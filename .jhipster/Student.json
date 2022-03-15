@@ -1,0 +1,56 @@
+{
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "gander",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "studyGroup",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationalId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parentNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "remarks",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "joiningDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": true,
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Student",
+  "changelogDate": "20220313185728"
+}

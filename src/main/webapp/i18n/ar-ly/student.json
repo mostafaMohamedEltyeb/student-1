@@ -1,0 +1,34 @@
+{
+  "studentApp": {
+    "student": {
+      "home": {
+        "title": "الطلاب",
+        "refreshListLabel": "اعادة تحميل القائمة",
+        "createLabel": "تسجيل طالب جديد",
+        "createOrEditLabel": "تسجيل او تعديل طالب",
+        "notFound": "لا يوجد طلاب"
+      },
+      "created": "تم تسجيل الطالب برقم تسلسلي {{ param }}",
+      "updated": "تم تعديل الطالب",
+      "deleted": "تم حذف الطالب",
+      "delete": {
+        "question": "هل انت متاكد من حذف الطالب ؟"
+      },
+      "detail": {
+        "title": "تسجيل طالب"
+      },
+      "id": "الرقم المسلسل",
+      "name": "اسم الطالب",
+      "age": "السن",
+      "gander": "النوع",
+      "studyGroup": "المجموعة الدراسية",
+      "nationalId": "الرقم القومي",
+      "parentNumber": "رقم ولي الامر",
+      "rate": "التقييم",
+      "address": "العنوان",
+      "remarks": "ملاحظات",
+      "joiningDate": "تاريخ الانضمام",
+      "price": "قيمة الاشتراك"
+    }
+  }
+}

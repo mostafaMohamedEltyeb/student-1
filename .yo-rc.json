@@ -41,6 +41,8 @@
     "jwtSecretKey": "NGQ5YTkyYmY3NmU2OGY4ZmFjMGQzNzUwOTQwY2YyYjkxMDg4NTcyMGE2ZjMyZDBhZjEzNzRjODg3YzQ2N2IzMTAzMGE4ZjEzNWJkZjVhNGNhNDI4NTc4YTYyYzg4MzM4NjhmOTFhNzQyMzE5YTZlNzUxNzU3ZDUzNTg0MTg4MzQ=",
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
-    "languages": ["en", "ar-ly"]
+    "languages": ["en", "ar-ly"],
+    "lastLiquibaseTimestamp": 1647197848000,
+    "entities": ["Student"]
   }
 }

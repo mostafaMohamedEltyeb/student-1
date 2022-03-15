@@ -95,6 +95,7 @@
   },
   "defaultProject": "student",
   "cli": {
+    "analytics": "c94e92bd-4a2d-43bc-9b20-2af50833d9b1",
     "packageManager": "npm"
   }
 }

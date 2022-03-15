@@ -1,0 +1,126 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-student-heading" data-cy="StudentCreateUpdateHeading" jhiTranslate="studentApp.student.home.createOrEditLabel">
+        Create or edit a Student
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.age" for="field_age">Age</label>
+          <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.gander" for="field_gander">Gander</label>
+          <input type="number" class="form-control" name="gander" id="field_gander" data-cy="gander" formControlName="gander" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.studyGroup" for="field_studyGroup">Study Group</label>
+          <input
+            type="text"
+            class="form-control"
+            name="studyGroup"
+            id="field_studyGroup"
+            data-cy="studyGroup"
+            formControlName="studyGroup"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.nationalId" for="field_nationalId">National Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nationalId"
+            id="field_nationalId"
+            data-cy="nationalId"
+            formControlName="nationalId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.parentNumber" for="field_parentNumber">Parent Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="parentNumber"
+            id="field_parentNumber"
+            data-cy="parentNumber"
+            formControlName="parentNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.rate" for="field_rate">Rate</label>
+          <input type="text" class="form-control" name="rate" id="field_rate" data-cy="rate" formControlName="rate" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.address" for="field_address">Address</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.remarks" for="field_remarks">Remarks</label>
+          <input type="text" class="form-control" name="remarks" id="field_remarks" data-cy="remarks" formControlName="remarks" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.joiningDate" for="field_joiningDate">Joining Date</label>
+          <div class="input-group">
+            <input
+              id="field_joiningDate"
+              data-cy="joiningDate"
+              type="text"
+              class="form-control"
+              name="joiningDate"
+              ngbDatepicker
+              #joiningDateDp="ngbDatepicker"
+              formControlName="joiningDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="joiningDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.price" for="field_price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

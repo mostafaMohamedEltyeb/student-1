@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="student">
+      <h2 data-cy="studentDetailsHeading"><span jhiTranslate="studentApp.student.detail.title">Student</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ student.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.name">Name</span></dt>
+        <dd>
+          <span>{{ student.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.age">Age</span></dt>
+        <dd>
+          <span>{{ student.age }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.gander">Gander</span></dt>
+        <dd>
+          <span>{{ student.gander }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.studyGroup">Study Group</span></dt>
+        <dd>
+          <span>{{ student.studyGroup }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.nationalId">National Id</span></dt>
+        <dd>
+          <span>{{ student.nationalId }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.parentNumber">Parent Number</span></dt>
+        <dd>
+          <span>{{ student.parentNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.rate">Rate</span></dt>
+        <dd>
+          <span>{{ student.rate }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.address">Address</span></dt>
+        <dd>
+          <span>{{ student.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.remarks">Remarks</span></dt>
+        <dd>
+          <span>{{ student.remarks }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.joiningDate">Joining Date</span></dt>
+        <dd>
+          <span>{{ student.joiningDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.price">Price</span></dt>
+        <dd>
+          <span>{{ student.price }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/student', student.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
