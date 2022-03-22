@@ -24,11 +24,18 @@
       "studyGroup": "المجموعة الدراسية",
       "nationalId": "الرقم القومي",
       "parentNumber": "رقم ولي الامر",
-      "rate": "التقييم",
+      "rate": "تقيم الطالب وقت الإشتراك",
       "address": "العنوان",
-      "remarks": "ملاحظات",
+      "remarks": "الملاحظات",
       "joiningDate": "تاريخ الانضمام",
-      "price": "قيمة الاشتراك"
+      "price": "قيمة الاشتراك",
+      "currentSora": "السورة الحالية",
+      "stage": "الصف الدراسي",
+      "grade": "المرحلة",
+      "readAndWriteRate": "تقييم القراءة والكتابة",
+      "lastTestRate": "تقدير اخر اختبار",
+      "groupClass": "الحلقة",
+      "disConnected": "منقطع"
     }
   }
 }

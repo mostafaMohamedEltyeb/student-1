@@ -4,6 +4,8 @@ import com.mostafa.student.domain.Student;
 import com.mostafa.student.repository.StudentRepository;
 import com.mostafa.student.service.dto.StudentDTO;
 import com.mostafa.student.service.mapper.StudentMapper;
+
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,12 +32,6 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
-    /**
-     * Save a student.
-     *
-     * @param studentDTO the entity to save.
-     * @return the persisted entity.
-     */
     public StudentDTO save(StudentDTO studentDTO) {
         log.debug("Request to save Student : {}", studentDTO);
         Student student = studentMapper.toEntity(studentDTO);
@@ -43,12 +39,6 @@ public class StudentService {
         return studentMapper.toDto(student);
     }
 
-    /**
-     * Partially update a student.
-     *
-     * @param studentDTO the entity to update partially.
-     * @return the persisted entity.
-     */
     public Optional<StudentDTO> partialUpdate(StudentDTO studentDTO) {
         log.debug("Request to partially update Student : {}", studentDTO);
 
@@ -64,37 +54,24 @@ public class StudentService {
             .map(studentMapper::toDto);
     }
 
-    /**
-     * Get all the students.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
     @Transactional(readOnly = true)
     public Page<StudentDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Students");
         return studentRepository.findAll(pageable).map(studentMapper::toDto);
     }
 
-    /**
-     * Get one student by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
     @Transactional(readOnly = true)
     public Optional<StudentDTO> findOne(Long id) {
         log.debug("Request to get Student : {}", id);
         return studentRepository.findById(id).map(studentMapper::toDto);
     }
 
-    /**
-     * Delete the student by id.
-     *
-     * @param id the id of the entity.
-     */
     public void delete(Long id) {
         log.debug("Request to delete Student : {}", id);
         studentRepository.deleteById(id);
+    }
+
+    public Optional<List<StudentDTO>> latePayment(Integer month, Integer year, Pageable pageable) {
+        return studentRepository.latePayment(month,year,pageable).map(studentMapper::toDto);
     }
 }

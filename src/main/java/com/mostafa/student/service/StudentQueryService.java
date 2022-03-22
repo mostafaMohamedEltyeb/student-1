@@ -119,6 +119,27 @@ public class StudentQueryService extends QueryService<Student> {
             if (criteria.getPrice() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getPrice(), Student_.price));
             }
+            if (criteria.getCurrentSora() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCurrentSora(), Student_.currentSora));
+            }
+            if (criteria.getStage() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getStage(), Student_.stage));
+            }
+            if (criteria.getGrade() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getGrade(), Student_.grade));
+            }
+            if (criteria.getReadAndWriteRate() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getReadAndWriteRate(), Student_.readAndWriteRate));
+            }
+            if (criteria.getLastTestRate() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getLastTestRate(), Student_.lastTestRate));
+            }
+            if (criteria.getGroupClass() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getGroupClass(), Student_.groupClass));
+            }
+            if (criteria.getDisConnected() != null) {
+                specification = specification.and(buildSpecification(criteria.getDisConnected(), Student_.disConnected));
+            }
         }
         return specification;
     }

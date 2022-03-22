@@ -1,0 +1,180 @@
+<div>
+  <h2 id="page-heading" data-cy="PaymentHeading">
+    <span jhiTranslate="studentApp.payment.home.title">Payments</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="studentApp.payment.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payment"
+        [routerLink]="['/payment/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="studentApp.payment.home.createLabel"> Create a new Payment </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="payments?.length === 0">
+    <span jhiTranslate="studentApp.payment.home.notFound">No payments found</span>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>الطالب :</label>
+        <input type="text" class="form-control" [(ngModel)]="searchByName" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>تاريخ دفع الاشتراك: </label>
+        <input type="text" class="form-control" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group">
+
+      <label>الشهر :</label>
+
+      <select class="form-control" [(ngModel)]="searchByMonth"  name="selectedRegion">
+        <option [value]="0">اختر</option>
+        <option [value]="1">1</option>
+        <option [value]="2">2</option>
+        <option [value]="3">3</option>
+        <option [value]="4">4</option>
+        <option [value]="5">5</option>
+        <option [value]="6">6</option>
+        <option [value]="7">7</option>
+        <option [value]="8">8</option>
+        <option [value]="9">9</option>
+        <option [value]="10">10</option>
+        <option [value]="11">11</option>
+        <option [value]="12">12</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+
+      <label>السنة :</label>
+
+      <select class="form-control" [(ngModel)]="searchByYear"  name="selectedRegion">
+        <option [value]="0">اختر</option>
+        <option [value]="2022">2022</option>
+        <option [value]="2023">2023</option>
+        <option [value]="2024">2024</option>
+        <option [value]="2025">2025</option>
+        <option [value]="2026">2026</option>
+        <option [value]="2027">2027</option>
+        <option value="2028">2028</option>
+      </select>
+    </div>
+  </div>
+
+
+
+<!--  <div class="">-->
+<!--    <label> شهر الإشتراك</label>-->
+<!--    <input type="number"  [(ngModel)]="searchByMonth" class="searchTerm" placeholder="">-->
+<!--  </div>-->
+
+<!--  <div class="">-->
+<!--    <label>سنة الإشتراك</label>-->
+<!--    <input type="number"  [(ngModel)]="searchByYear" class="searchTerm" placeholder="">-->
+<!--  </div>-->
+
+  <div class="table-responsive" id="entities" *ngIf="payments && payments.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cost"><span jhiTranslate="studentApp.payment.cost">Cost</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="date"><span jhiTranslate="studentApp.payment.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="month"><span jhiTranslate="studentApp.payment.month">Month</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="year"><span jhiTranslate="studentApp.payment.year">Year</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="studentId.no">
+            <span jhiTranslate="studentApp.payment.studentId">Student Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of payments; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/payment', payment.id, 'view']">{{ payment.id }}</a>
+          </td>
+          <td>{{ payment.cost }}</td>
+          <td>{{ payment.date | formatMediumDate }}</td>
+          <td>{{ payment.month }}</td>
+          <td>{{ payment.year }}</td>
+          <td>
+            <div *ngIf="payment.studentId">
+              <a [routerLink]="['/student', payment.studentId?.id, 'view']">{{ payment.studentId?.name }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/payment', payment.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/payment', payment.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(payment)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="payments && payments.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

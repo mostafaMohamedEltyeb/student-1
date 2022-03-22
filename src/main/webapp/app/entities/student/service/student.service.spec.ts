@@ -37,6 +37,13 @@ describe('Service Tests', () => {
         remarks: 'AAAAAAA',
         joiningDate: currentDate,
         price: 0,
+        currentSora: 'AAAAAAA',
+        stage: 'AAAAAAA',
+        grade: 'AAAAAAA',
+        readAndWriteRate: 'AAAAAAA',
+        lastTestRate: 'AAAAAAA',
+        groupClass: 'AAAAAAA',
+        disConnected: false,
       };
     });
 
@@ -94,6 +101,13 @@ describe('Service Tests', () => {
             remarks: 'BBBBBB',
             joiningDate: currentDate.format(DATE_FORMAT),
             price: 1,
+            currentSora: 'BBBBBB',
+            stage: 'BBBBBB',
+            grade: 'BBBBBB',
+            readAndWriteRate: 'BBBBBB',
+            lastTestRate: 'BBBBBB',
+            groupClass: 'BBBBBB',
+            disConnected: true,
           },
           elemDefault
         );
@@ -120,6 +134,10 @@ describe('Service Tests', () => {
             rate: 'BBBBBB',
             address: 'BBBBBB',
             remarks: 'BBBBBB',
+            currentSora: 'BBBBBB',
+            stage: 'BBBBBB',
+            grade: 'BBBBBB',
+            disConnected: true,
           },
           new Student()
         );
@@ -155,6 +173,13 @@ describe('Service Tests', () => {
             remarks: 'BBBBBB',
             joiningDate: currentDate.format(DATE_FORMAT),
             price: 1,
+            currentSora: 'BBBBBB',
+            stage: 'BBBBBB',
+            grade: 'BBBBBB',
+            readAndWriteRate: 'BBBBBB',
+            lastTestRate: 'BBBBBB',
+            groupClass: 'BBBBBB',
+            disConnected: true,
           },
           elemDefault
         );
@@ -211,7 +236,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Student to an array', () => {
-          const studentArray: IStudent[] = [{ id: 123 }, { id: 456 }, { id: 67579 }];
+          const studentArray: IStudent[] = [{ id: 123 }, { id: 456 }, { id: 83886 }];
           const studentCollection: IStudent[] = [{ id: 123 }];
           expectedResult = service.addStudentToCollectionIfMissing(studentCollection, ...studentArray);
           expect(expectedResult).toHaveLength(3);

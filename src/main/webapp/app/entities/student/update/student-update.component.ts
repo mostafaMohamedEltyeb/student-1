@@ -28,6 +28,13 @@ export class StudentUpdateComponent implements OnInit {
     remarks: [],
     joiningDate: [],
     price: [],
+    currentSora: [],
+    stage: [],
+    grade: [],
+    readAndWriteRate: [],
+    lastTestRate: [],
+    groupClass: [],
+    disConnected: [],
   });
 
   constructor(protected studentService: StudentService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
@@ -85,6 +92,13 @@ export class StudentUpdateComponent implements OnInit {
       remarks: student.remarks,
       joiningDate: student.joiningDate,
       price: student.price,
+      currentSora: student.currentSora,
+      stage: student.stage,
+      grade: student.grade,
+      readAndWriteRate: student.readAndWriteRate,
+      lastTestRate: student.lastTestRate,
+      groupClass: student.groupClass,
+      disConnected: student.disConnected,
     });
   }
 
@@ -103,6 +117,13 @@ export class StudentUpdateComponent implements OnInit {
       remarks: this.editForm.get(['remarks'])!.value,
       joiningDate: this.editForm.get(['joiningDate'])!.value,
       price: this.editForm.get(['price'])!.value,
+      currentSora: this.editForm.get(['currentSora'])!.value,
+      stage: this.editForm.get(['stage'])!.value,
+      grade: this.editForm.get(['grade'])!.value,
+      readAndWriteRate: this.editForm.get(['readAndWriteRate'])!.value,
+      lastTestRate: this.editForm.get(['lastTestRate'])!.value,
+      groupClass: this.editForm.get(['groupClass'])!.value,
+      disConnected: this.editForm.get(['disConnected'])!.value,
     };
   }
 }

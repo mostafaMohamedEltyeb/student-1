@@ -43,6 +43,34 @@
     {
       "fieldName": "price",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "currentSora",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "stage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "grade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "readAndWriteRate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastTestRate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "groupClass",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "disConnected",
+      "fieldType": "Boolean"
     }
   ],
   "relationships": [],

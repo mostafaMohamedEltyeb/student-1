@@ -28,7 +28,14 @@
       "address": "Address",
       "remarks": "Remarks",
       "joiningDate": "Joining Date",
-      "price": "Price"
+      "price": "Price",
+      "currentSora": "Current Sora",
+      "stage": "Stage",
+      "grade": "Grade",
+      "readAndWriteRate": "Read And Write Rate",
+      "lastTestRate": "Last Test Rate",
+      "groupClass": "Group Class",
+      "disConnected": "Dis Connected"
     }
   }
 }

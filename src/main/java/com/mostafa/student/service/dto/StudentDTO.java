@@ -33,6 +33,20 @@ public class StudentDTO implements Serializable {
 
     private Integer price;
 
+    private String currentSora;
+
+    private String stage;
+
+    private String grade;
+
+    private String readAndWriteRate;
+
+    private String lastTestRate;
+
+    private String groupClass;
+
+    private Boolean disConnected;
+
     public Long getId() {
         return id;
     }
@@ -129,6 +143,62 @@ public class StudentDTO implements Serializable {
         this.price = price;
     }
 
+    public String getCurrentSora() {
+        return currentSora;
+    }
+
+    public void setCurrentSora(String currentSora) {
+        this.currentSora = currentSora;
+    }
+
+    public String getStage() {
+        return stage;
+    }
+
+    public void setStage(String stage) {
+        this.stage = stage;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getReadAndWriteRate() {
+        return readAndWriteRate;
+    }
+
+    public void setReadAndWriteRate(String readAndWriteRate) {
+        this.readAndWriteRate = readAndWriteRate;
+    }
+
+    public String getLastTestRate() {
+        return lastTestRate;
+    }
+
+    public void setLastTestRate(String lastTestRate) {
+        this.lastTestRate = lastTestRate;
+    }
+
+    public String getGroupClass() {
+        return groupClass;
+    }
+
+    public void setGroupClass(String groupClass) {
+        this.groupClass = groupClass;
+    }
+
+    public Boolean getDisConnected() {
+        return disConnected;
+    }
+
+    public void setDisConnected(Boolean disConnected) {
+        this.disConnected = disConnected;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -166,6 +236,13 @@ public class StudentDTO implements Serializable {
             ", remarks='" + getRemarks() + "'" +
             ", joiningDate='" + getJoiningDate() + "'" +
             ", price=" + getPrice() +
+            ", currentSora='" + getCurrentSora() + "'" +
+            ", stage='" + getStage() + "'" +
+            ", grade='" + getGrade() + "'" +
+            ", readAndWriteRate='" + getReadAndWriteRate() + "'" +
+            ", lastTestRate='" + getLastTestRate() + "'" +
+            ", groupClass='" + getGroupClass() + "'" +
+            ", disConnected='" + getDisConnected() + "'" +
             "}";
     }
 }

@@ -7,7 +7,9 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "الادارة",
-        "student": "نسجيل ومراجعة الطلاب",
+        "student": "تسجيل ومراجعة الطلاب",
+        "payment": "الماليات",
+        "latedPayment": "المتأخرات",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -36,8 +38,8 @@
     "form": {
       "username.label": "اسم المستخدم",
       "username.placeholder": "إسم المستخدم الخاص بك",
-      "currentpassword.label": "Current password",
-      "currentpassword.placeholder": "Current password",
+      "currentpassword.label": "كلمة المرور الحالية",
+      "currentpassword.placeholder": "كلمة المرور الحالية",
       "newpassword.label": "كلمة السر الجديدة",
       "newpassword.placeholder": "كلمة السر الجديدة",
       "confirmpassword.label": "تأكيد كلمة السر الجديدة",
@@ -81,7 +83,7 @@
       }
     },
     "field": {
-      "id": "ID"
+      "id": "الرقم التسلسلي"
     },
     "ribbon": {
       "dev": "تطوير"

@@ -20,6 +20,7 @@ plugins {
     id "org.liquibase.gradle"
     id "org.sonarqube"
     id "io.spring.nohttp"
+    id "io.freefair.aspectj" version "5.3.3.3"
     //jhipster-needle-gradle-plugins - JHipster will add additional gradle plugins here
 }
 
@@ -228,6 +229,8 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-mail"
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.aspectj:aspectjrt:1.9.7"
+    implementation "org.aspectj:aspectjweaver:1.9.7"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa"
     testImplementation "org.testcontainers:mysql"
     implementation "org.springframework.boot:spring-boot-starter-security"
@@ -248,6 +251,7 @@ dependencies {
     } else {
         implementation "io.jsonwebtoken:jjwt-impl"
         implementation "io.jsonwebtoken:jjwt-jackson"
+        implementation "org.aspectj:aspectjrt:1.9.7"
     }
     implementation ("io.springfox:springfox-oas")
     implementation ("io.springfox:springfox-swagger2")

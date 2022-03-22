@@ -1,0 +1,28 @@
+{
+  "studentApp": {
+    "payment": {
+      "home": {
+        "title": "الماليات",
+        "refreshListLabel": "إاعادة تحميل القائمة",
+        "createLabel": "تجديد اشتراك",
+        "createOrEditLabel": "تجديد اشتراك",
+        "notFound": "لا يوجد اشتركات"
+      },
+      "created": "تم تجديد الاشتراك",
+      "updated": "تم تعديل الاشتراك",
+      "deleted": "تم حذف الاشتراك ",
+      "delete": {
+        "question": "هل أنت متاكد من حذف الاشتراك ؟"
+      },
+      "detail": {
+        "title": "تجديد اشتراك"
+      },
+      "id": "ID",
+      "cost": "قيمة الاشتراك",
+      "date": "التاريخ",
+      "month": "شهر الاشتراك",
+      "year": "سنة الاشتراك",
+      "studentId": "الطالب"
+    }
+  }
+}

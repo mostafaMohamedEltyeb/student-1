@@ -71,6 +71,27 @@ class StudentResourceIT {
     private static final Integer UPDATED_PRICE = 2;
     private static final Integer SMALLER_PRICE = 1 - 1;
 
+    private static final String DEFAULT_CURRENT_SORA = "AAAAAAAAAA";
+    private static final String UPDATED_CURRENT_SORA = "BBBBBBBBBB";
+
+    private static final String DEFAULT_STAGE = "AAAAAAAAAA";
+    private static final String UPDATED_STAGE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_GRADE = "AAAAAAAAAA";
+    private static final String UPDATED_GRADE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_READ_AND_WRITE_RATE = "AAAAAAAAAA";
+    private static final String UPDATED_READ_AND_WRITE_RATE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LAST_TEST_RATE = "AAAAAAAAAA";
+    private static final String UPDATED_LAST_TEST_RATE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_GROUP_CLASS = "AAAAAAAAAA";
+    private static final String UPDATED_GROUP_CLASS = "BBBBBBBBBB";
+
+    private static final Boolean DEFAULT_DIS_CONNECTED = false;
+    private static final Boolean UPDATED_DIS_CONNECTED = true;
+
     private static final String ENTITY_API_URL = "/api/students";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -109,7 +130,14 @@ class StudentResourceIT {
             .address(DEFAULT_ADDRESS)
             .remarks(DEFAULT_REMARKS)
             .joiningDate(DEFAULT_JOINING_DATE)
-            .price(DEFAULT_PRICE);
+            .price(DEFAULT_PRICE)
+            .currentSora(DEFAULT_CURRENT_SORA)
+            .stage(DEFAULT_STAGE)
+            .grade(DEFAULT_GRADE)
+            .readAndWriteRate(DEFAULT_READ_AND_WRITE_RATE)
+            .lastTestRate(DEFAULT_LAST_TEST_RATE)
+            .groupClass(DEFAULT_GROUP_CLASS)
+            .disConnected(DEFAULT_DIS_CONNECTED);
         return student;
     }
 
@@ -131,7 +159,14 @@ class StudentResourceIT {
             .address(UPDATED_ADDRESS)
             .remarks(UPDATED_REMARKS)
             .joiningDate(UPDATED_JOINING_DATE)
-            .price(UPDATED_PRICE);
+            .price(UPDATED_PRICE)
+            .currentSora(UPDATED_CURRENT_SORA)
+            .stage(UPDATED_STAGE)
+            .grade(UPDATED_GRADE)
+            .readAndWriteRate(UPDATED_READ_AND_WRITE_RATE)
+            .lastTestRate(UPDATED_LAST_TEST_RATE)
+            .groupClass(UPDATED_GROUP_CLASS)
+            .disConnected(UPDATED_DIS_CONNECTED);
         return student;
     }
 
@@ -165,6 +200,13 @@ class StudentResourceIT {
         assertThat(testStudent.getRemarks()).isEqualTo(DEFAULT_REMARKS);
         assertThat(testStudent.getJoiningDate()).isEqualTo(DEFAULT_JOINING_DATE);
         assertThat(testStudent.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testStudent.getCurrentSora()).isEqualTo(DEFAULT_CURRENT_SORA);
+        assertThat(testStudent.getStage()).isEqualTo(DEFAULT_STAGE);
+        assertThat(testStudent.getGrade()).isEqualTo(DEFAULT_GRADE);
+        assertThat(testStudent.getReadAndWriteRate()).isEqualTo(DEFAULT_READ_AND_WRITE_RATE);
+        assertThat(testStudent.getLastTestRate()).isEqualTo(DEFAULT_LAST_TEST_RATE);
+        assertThat(testStudent.getGroupClass()).isEqualTo(DEFAULT_GROUP_CLASS);
+        assertThat(testStudent.getDisConnected()).isEqualTo(DEFAULT_DIS_CONNECTED);
     }
 
     @Test
@@ -208,7 +250,14 @@ class StudentResourceIT {
             .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS)))
             .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)))
             .andExpect(jsonPath("$.[*].joiningDate").value(hasItem(DEFAULT_JOINING_DATE.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)))
+            .andExpect(jsonPath("$.[*].currentSora").value(hasItem(DEFAULT_CURRENT_SORA)))
+            .andExpect(jsonPath("$.[*].stage").value(hasItem(DEFAULT_STAGE)))
+            .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE)))
+            .andExpect(jsonPath("$.[*].readAndWriteRate").value(hasItem(DEFAULT_READ_AND_WRITE_RATE)))
+            .andExpect(jsonPath("$.[*].lastTestRate").value(hasItem(DEFAULT_LAST_TEST_RATE)))
+            .andExpect(jsonPath("$.[*].groupClass").value(hasItem(DEFAULT_GROUP_CLASS)))
+            .andExpect(jsonPath("$.[*].disConnected").value(hasItem(DEFAULT_DIS_CONNECTED.booleanValue())));
     }
 
     @Test
@@ -233,7 +282,14 @@ class StudentResourceIT {
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS))
             .andExpect(jsonPath("$.remarks").value(DEFAULT_REMARKS))
             .andExpect(jsonPath("$.joiningDate").value(DEFAULT_JOINING_DATE.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE))
+            .andExpect(jsonPath("$.currentSora").value(DEFAULT_CURRENT_SORA))
+            .andExpect(jsonPath("$.stage").value(DEFAULT_STAGE))
+            .andExpect(jsonPath("$.grade").value(DEFAULT_GRADE))
+            .andExpect(jsonPath("$.readAndWriteRate").value(DEFAULT_READ_AND_WRITE_RATE))
+            .andExpect(jsonPath("$.lastTestRate").value(DEFAULT_LAST_TEST_RATE))
+            .andExpect(jsonPath("$.groupClass").value(DEFAULT_GROUP_CLASS))
+            .andExpect(jsonPath("$.disConnected").value(DEFAULT_DIS_CONNECTED.booleanValue()));
     }
 
     @Test
@@ -1216,6 +1272,526 @@ class StudentResourceIT {
         defaultStudentShouldBeFound("price.greaterThan=" + SMALLER_PRICE);
     }
 
+    @Test
+    @Transactional
+    void getAllStudentsByCurrentSoraIsEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where currentSora equals to DEFAULT_CURRENT_SORA
+        defaultStudentShouldBeFound("currentSora.equals=" + DEFAULT_CURRENT_SORA);
+
+        // Get all the studentList where currentSora equals to UPDATED_CURRENT_SORA
+        defaultStudentShouldNotBeFound("currentSora.equals=" + UPDATED_CURRENT_SORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByCurrentSoraIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where currentSora not equals to DEFAULT_CURRENT_SORA
+        defaultStudentShouldNotBeFound("currentSora.notEquals=" + DEFAULT_CURRENT_SORA);
+
+        // Get all the studentList where currentSora not equals to UPDATED_CURRENT_SORA
+        defaultStudentShouldBeFound("currentSora.notEquals=" + UPDATED_CURRENT_SORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByCurrentSoraIsInShouldWork() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where currentSora in DEFAULT_CURRENT_SORA or UPDATED_CURRENT_SORA
+        defaultStudentShouldBeFound("currentSora.in=" + DEFAULT_CURRENT_SORA + "," + UPDATED_CURRENT_SORA);
+
+        // Get all the studentList where currentSora equals to UPDATED_CURRENT_SORA
+        defaultStudentShouldNotBeFound("currentSora.in=" + UPDATED_CURRENT_SORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByCurrentSoraIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where currentSora is not null
+        defaultStudentShouldBeFound("currentSora.specified=true");
+
+        // Get all the studentList where currentSora is null
+        defaultStudentShouldNotBeFound("currentSora.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByCurrentSoraContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where currentSora contains DEFAULT_CURRENT_SORA
+        defaultStudentShouldBeFound("currentSora.contains=" + DEFAULT_CURRENT_SORA);
+
+        // Get all the studentList where currentSora contains UPDATED_CURRENT_SORA
+        defaultStudentShouldNotBeFound("currentSora.contains=" + UPDATED_CURRENT_SORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByCurrentSoraNotContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where currentSora does not contain DEFAULT_CURRENT_SORA
+        defaultStudentShouldNotBeFound("currentSora.doesNotContain=" + DEFAULT_CURRENT_SORA);
+
+        // Get all the studentList where currentSora does not contain UPDATED_CURRENT_SORA
+        defaultStudentShouldBeFound("currentSora.doesNotContain=" + UPDATED_CURRENT_SORA);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByStageIsEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where stage equals to DEFAULT_STAGE
+        defaultStudentShouldBeFound("stage.equals=" + DEFAULT_STAGE);
+
+        // Get all the studentList where stage equals to UPDATED_STAGE
+        defaultStudentShouldNotBeFound("stage.equals=" + UPDATED_STAGE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByStageIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where stage not equals to DEFAULT_STAGE
+        defaultStudentShouldNotBeFound("stage.notEquals=" + DEFAULT_STAGE);
+
+        // Get all the studentList where stage not equals to UPDATED_STAGE
+        defaultStudentShouldBeFound("stage.notEquals=" + UPDATED_STAGE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByStageIsInShouldWork() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where stage in DEFAULT_STAGE or UPDATED_STAGE
+        defaultStudentShouldBeFound("stage.in=" + DEFAULT_STAGE + "," + UPDATED_STAGE);
+
+        // Get all the studentList where stage equals to UPDATED_STAGE
+        defaultStudentShouldNotBeFound("stage.in=" + UPDATED_STAGE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByStageIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where stage is not null
+        defaultStudentShouldBeFound("stage.specified=true");
+
+        // Get all the studentList where stage is null
+        defaultStudentShouldNotBeFound("stage.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByStageContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where stage contains DEFAULT_STAGE
+        defaultStudentShouldBeFound("stage.contains=" + DEFAULT_STAGE);
+
+        // Get all the studentList where stage contains UPDATED_STAGE
+        defaultStudentShouldNotBeFound("stage.contains=" + UPDATED_STAGE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByStageNotContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where stage does not contain DEFAULT_STAGE
+        defaultStudentShouldNotBeFound("stage.doesNotContain=" + DEFAULT_STAGE);
+
+        // Get all the studentList where stage does not contain UPDATED_STAGE
+        defaultStudentShouldBeFound("stage.doesNotContain=" + UPDATED_STAGE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGradeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where grade equals to DEFAULT_GRADE
+        defaultStudentShouldBeFound("grade.equals=" + DEFAULT_GRADE);
+
+        // Get all the studentList where grade equals to UPDATED_GRADE
+        defaultStudentShouldNotBeFound("grade.equals=" + UPDATED_GRADE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGradeIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where grade not equals to DEFAULT_GRADE
+        defaultStudentShouldNotBeFound("grade.notEquals=" + DEFAULT_GRADE);
+
+        // Get all the studentList where grade not equals to UPDATED_GRADE
+        defaultStudentShouldBeFound("grade.notEquals=" + UPDATED_GRADE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGradeIsInShouldWork() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where grade in DEFAULT_GRADE or UPDATED_GRADE
+        defaultStudentShouldBeFound("grade.in=" + DEFAULT_GRADE + "," + UPDATED_GRADE);
+
+        // Get all the studentList where grade equals to UPDATED_GRADE
+        defaultStudentShouldNotBeFound("grade.in=" + UPDATED_GRADE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGradeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where grade is not null
+        defaultStudentShouldBeFound("grade.specified=true");
+
+        // Get all the studentList where grade is null
+        defaultStudentShouldNotBeFound("grade.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGradeContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where grade contains DEFAULT_GRADE
+        defaultStudentShouldBeFound("grade.contains=" + DEFAULT_GRADE);
+
+        // Get all the studentList where grade contains UPDATED_GRADE
+        defaultStudentShouldNotBeFound("grade.contains=" + UPDATED_GRADE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGradeNotContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where grade does not contain DEFAULT_GRADE
+        defaultStudentShouldNotBeFound("grade.doesNotContain=" + DEFAULT_GRADE);
+
+        // Get all the studentList where grade does not contain UPDATED_GRADE
+        defaultStudentShouldBeFound("grade.doesNotContain=" + UPDATED_GRADE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByReadAndWriteRateIsEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where readAndWriteRate equals to DEFAULT_READ_AND_WRITE_RATE
+        defaultStudentShouldBeFound("readAndWriteRate.equals=" + DEFAULT_READ_AND_WRITE_RATE);
+
+        // Get all the studentList where readAndWriteRate equals to UPDATED_READ_AND_WRITE_RATE
+        defaultStudentShouldNotBeFound("readAndWriteRate.equals=" + UPDATED_READ_AND_WRITE_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByReadAndWriteRateIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where readAndWriteRate not equals to DEFAULT_READ_AND_WRITE_RATE
+        defaultStudentShouldNotBeFound("readAndWriteRate.notEquals=" + DEFAULT_READ_AND_WRITE_RATE);
+
+        // Get all the studentList where readAndWriteRate not equals to UPDATED_READ_AND_WRITE_RATE
+        defaultStudentShouldBeFound("readAndWriteRate.notEquals=" + UPDATED_READ_AND_WRITE_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByReadAndWriteRateIsInShouldWork() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where readAndWriteRate in DEFAULT_READ_AND_WRITE_RATE or UPDATED_READ_AND_WRITE_RATE
+        defaultStudentShouldBeFound("readAndWriteRate.in=" + DEFAULT_READ_AND_WRITE_RATE + "," + UPDATED_READ_AND_WRITE_RATE);
+
+        // Get all the studentList where readAndWriteRate equals to UPDATED_READ_AND_WRITE_RATE
+        defaultStudentShouldNotBeFound("readAndWriteRate.in=" + UPDATED_READ_AND_WRITE_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByReadAndWriteRateIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where readAndWriteRate is not null
+        defaultStudentShouldBeFound("readAndWriteRate.specified=true");
+
+        // Get all the studentList where readAndWriteRate is null
+        defaultStudentShouldNotBeFound("readAndWriteRate.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByReadAndWriteRateContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where readAndWriteRate contains DEFAULT_READ_AND_WRITE_RATE
+        defaultStudentShouldBeFound("readAndWriteRate.contains=" + DEFAULT_READ_AND_WRITE_RATE);
+
+        // Get all the studentList where readAndWriteRate contains UPDATED_READ_AND_WRITE_RATE
+        defaultStudentShouldNotBeFound("readAndWriteRate.contains=" + UPDATED_READ_AND_WRITE_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByReadAndWriteRateNotContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where readAndWriteRate does not contain DEFAULT_READ_AND_WRITE_RATE
+        defaultStudentShouldNotBeFound("readAndWriteRate.doesNotContain=" + DEFAULT_READ_AND_WRITE_RATE);
+
+        // Get all the studentList where readAndWriteRate does not contain UPDATED_READ_AND_WRITE_RATE
+        defaultStudentShouldBeFound("readAndWriteRate.doesNotContain=" + UPDATED_READ_AND_WRITE_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByLastTestRateIsEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where lastTestRate equals to DEFAULT_LAST_TEST_RATE
+        defaultStudentShouldBeFound("lastTestRate.equals=" + DEFAULT_LAST_TEST_RATE);
+
+        // Get all the studentList where lastTestRate equals to UPDATED_LAST_TEST_RATE
+        defaultStudentShouldNotBeFound("lastTestRate.equals=" + UPDATED_LAST_TEST_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByLastTestRateIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where lastTestRate not equals to DEFAULT_LAST_TEST_RATE
+        defaultStudentShouldNotBeFound("lastTestRate.notEquals=" + DEFAULT_LAST_TEST_RATE);
+
+        // Get all the studentList where lastTestRate not equals to UPDATED_LAST_TEST_RATE
+        defaultStudentShouldBeFound("lastTestRate.notEquals=" + UPDATED_LAST_TEST_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByLastTestRateIsInShouldWork() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where lastTestRate in DEFAULT_LAST_TEST_RATE or UPDATED_LAST_TEST_RATE
+        defaultStudentShouldBeFound("lastTestRate.in=" + DEFAULT_LAST_TEST_RATE + "," + UPDATED_LAST_TEST_RATE);
+
+        // Get all the studentList where lastTestRate equals to UPDATED_LAST_TEST_RATE
+        defaultStudentShouldNotBeFound("lastTestRate.in=" + UPDATED_LAST_TEST_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByLastTestRateIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where lastTestRate is not null
+        defaultStudentShouldBeFound("lastTestRate.specified=true");
+
+        // Get all the studentList where lastTestRate is null
+        defaultStudentShouldNotBeFound("lastTestRate.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByLastTestRateContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where lastTestRate contains DEFAULT_LAST_TEST_RATE
+        defaultStudentShouldBeFound("lastTestRate.contains=" + DEFAULT_LAST_TEST_RATE);
+
+        // Get all the studentList where lastTestRate contains UPDATED_LAST_TEST_RATE
+        defaultStudentShouldNotBeFound("lastTestRate.contains=" + UPDATED_LAST_TEST_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByLastTestRateNotContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where lastTestRate does not contain DEFAULT_LAST_TEST_RATE
+        defaultStudentShouldNotBeFound("lastTestRate.doesNotContain=" + DEFAULT_LAST_TEST_RATE);
+
+        // Get all the studentList where lastTestRate does not contain UPDATED_LAST_TEST_RATE
+        defaultStudentShouldBeFound("lastTestRate.doesNotContain=" + UPDATED_LAST_TEST_RATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGroupClassIsEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where groupClass equals to DEFAULT_GROUP_CLASS
+        defaultStudentShouldBeFound("groupClass.equals=" + DEFAULT_GROUP_CLASS);
+
+        // Get all the studentList where groupClass equals to UPDATED_GROUP_CLASS
+        defaultStudentShouldNotBeFound("groupClass.equals=" + UPDATED_GROUP_CLASS);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGroupClassIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where groupClass not equals to DEFAULT_GROUP_CLASS
+        defaultStudentShouldNotBeFound("groupClass.notEquals=" + DEFAULT_GROUP_CLASS);
+
+        // Get all the studentList where groupClass not equals to UPDATED_GROUP_CLASS
+        defaultStudentShouldBeFound("groupClass.notEquals=" + UPDATED_GROUP_CLASS);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGroupClassIsInShouldWork() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where groupClass in DEFAULT_GROUP_CLASS or UPDATED_GROUP_CLASS
+        defaultStudentShouldBeFound("groupClass.in=" + DEFAULT_GROUP_CLASS + "," + UPDATED_GROUP_CLASS);
+
+        // Get all the studentList where groupClass equals to UPDATED_GROUP_CLASS
+        defaultStudentShouldNotBeFound("groupClass.in=" + UPDATED_GROUP_CLASS);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGroupClassIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where groupClass is not null
+        defaultStudentShouldBeFound("groupClass.specified=true");
+
+        // Get all the studentList where groupClass is null
+        defaultStudentShouldNotBeFound("groupClass.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGroupClassContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where groupClass contains DEFAULT_GROUP_CLASS
+        defaultStudentShouldBeFound("groupClass.contains=" + DEFAULT_GROUP_CLASS);
+
+        // Get all the studentList where groupClass contains UPDATED_GROUP_CLASS
+        defaultStudentShouldNotBeFound("groupClass.contains=" + UPDATED_GROUP_CLASS);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByGroupClassNotContainsSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where groupClass does not contain DEFAULT_GROUP_CLASS
+        defaultStudentShouldNotBeFound("groupClass.doesNotContain=" + DEFAULT_GROUP_CLASS);
+
+        // Get all the studentList where groupClass does not contain UPDATED_GROUP_CLASS
+        defaultStudentShouldBeFound("groupClass.doesNotContain=" + UPDATED_GROUP_CLASS);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByDisConnectedIsEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where disConnected equals to DEFAULT_DIS_CONNECTED
+        defaultStudentShouldBeFound("disConnected.equals=" + DEFAULT_DIS_CONNECTED);
+
+        // Get all the studentList where disConnected equals to UPDATED_DIS_CONNECTED
+        defaultStudentShouldNotBeFound("disConnected.equals=" + UPDATED_DIS_CONNECTED);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByDisConnectedIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where disConnected not equals to DEFAULT_DIS_CONNECTED
+        defaultStudentShouldNotBeFound("disConnected.notEquals=" + DEFAULT_DIS_CONNECTED);
+
+        // Get all the studentList where disConnected not equals to UPDATED_DIS_CONNECTED
+        defaultStudentShouldBeFound("disConnected.notEquals=" + UPDATED_DIS_CONNECTED);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByDisConnectedIsInShouldWork() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where disConnected in DEFAULT_DIS_CONNECTED or UPDATED_DIS_CONNECTED
+        defaultStudentShouldBeFound("disConnected.in=" + DEFAULT_DIS_CONNECTED + "," + UPDATED_DIS_CONNECTED);
+
+        // Get all the studentList where disConnected equals to UPDATED_DIS_CONNECTED
+        defaultStudentShouldNotBeFound("disConnected.in=" + UPDATED_DIS_CONNECTED);
+    }
+
+    @Test
+    @Transactional
+    void getAllStudentsByDisConnectedIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        studentRepository.saveAndFlush(student);
+
+        // Get all the studentList where disConnected is not null
+        defaultStudentShouldBeFound("disConnected.specified=true");
+
+        // Get all the studentList where disConnected is null
+        defaultStudentShouldNotBeFound("disConnected.specified=false");
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -1235,7 +1811,14 @@ class StudentResourceIT {
             .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS)))
             .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)))
             .andExpect(jsonPath("$.[*].joiningDate").value(hasItem(DEFAULT_JOINING_DATE.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)))
+            .andExpect(jsonPath("$.[*].currentSora").value(hasItem(DEFAULT_CURRENT_SORA)))
+            .andExpect(jsonPath("$.[*].stage").value(hasItem(DEFAULT_STAGE)))
+            .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE)))
+            .andExpect(jsonPath("$.[*].readAndWriteRate").value(hasItem(DEFAULT_READ_AND_WRITE_RATE)))
+            .andExpect(jsonPath("$.[*].lastTestRate").value(hasItem(DEFAULT_LAST_TEST_RATE)))
+            .andExpect(jsonPath("$.[*].groupClass").value(hasItem(DEFAULT_GROUP_CLASS)))
+            .andExpect(jsonPath("$.[*].disConnected").value(hasItem(DEFAULT_DIS_CONNECTED.booleanValue())));
 
         // Check, that the count call also returns 1
         restStudentMockMvc
@@ -1294,7 +1877,14 @@ class StudentResourceIT {
             .address(UPDATED_ADDRESS)
             .remarks(UPDATED_REMARKS)
             .joiningDate(UPDATED_JOINING_DATE)
-            .price(UPDATED_PRICE);
+            .price(UPDATED_PRICE)
+            .currentSora(UPDATED_CURRENT_SORA)
+            .stage(UPDATED_STAGE)
+            .grade(UPDATED_GRADE)
+            .readAndWriteRate(UPDATED_READ_AND_WRITE_RATE)
+            .lastTestRate(UPDATED_LAST_TEST_RATE)
+            .groupClass(UPDATED_GROUP_CLASS)
+            .disConnected(UPDATED_DIS_CONNECTED);
         StudentDTO studentDTO = studentMapper.toDto(updatedStudent);
 
         restStudentMockMvc
@@ -1320,6 +1910,13 @@ class StudentResourceIT {
         assertThat(testStudent.getRemarks()).isEqualTo(UPDATED_REMARKS);
         assertThat(testStudent.getJoiningDate()).isEqualTo(UPDATED_JOINING_DATE);
         assertThat(testStudent.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testStudent.getCurrentSora()).isEqualTo(UPDATED_CURRENT_SORA);
+        assertThat(testStudent.getStage()).isEqualTo(UPDATED_STAGE);
+        assertThat(testStudent.getGrade()).isEqualTo(UPDATED_GRADE);
+        assertThat(testStudent.getReadAndWriteRate()).isEqualTo(UPDATED_READ_AND_WRITE_RATE);
+        assertThat(testStudent.getLastTestRate()).isEqualTo(UPDATED_LAST_TEST_RATE);
+        assertThat(testStudent.getGroupClass()).isEqualTo(UPDATED_GROUP_CLASS);
+        assertThat(testStudent.getDisConnected()).isEqualTo(UPDATED_DIS_CONNECTED);
     }
 
     @Test
@@ -1404,7 +2001,11 @@ class StudentResourceIT {
             .nationalId(UPDATED_NATIONAL_ID)
             .rate(UPDATED_RATE)
             .address(UPDATED_ADDRESS)
-            .remarks(UPDATED_REMARKS);
+            .remarks(UPDATED_REMARKS)
+            .currentSora(UPDATED_CURRENT_SORA)
+            .stage(UPDATED_STAGE)
+            .grade(UPDATED_GRADE)
+            .disConnected(UPDATED_DIS_CONNECTED);
 
         restStudentMockMvc
             .perform(
@@ -1429,6 +2030,13 @@ class StudentResourceIT {
         assertThat(testStudent.getRemarks()).isEqualTo(UPDATED_REMARKS);
         assertThat(testStudent.getJoiningDate()).isEqualTo(DEFAULT_JOINING_DATE);
         assertThat(testStudent.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testStudent.getCurrentSora()).isEqualTo(UPDATED_CURRENT_SORA);
+        assertThat(testStudent.getStage()).isEqualTo(UPDATED_STAGE);
+        assertThat(testStudent.getGrade()).isEqualTo(UPDATED_GRADE);
+        assertThat(testStudent.getReadAndWriteRate()).isEqualTo(DEFAULT_READ_AND_WRITE_RATE);
+        assertThat(testStudent.getLastTestRate()).isEqualTo(DEFAULT_LAST_TEST_RATE);
+        assertThat(testStudent.getGroupClass()).isEqualTo(DEFAULT_GROUP_CLASS);
+        assertThat(testStudent.getDisConnected()).isEqualTo(UPDATED_DIS_CONNECTED);
     }
 
     @Test
@@ -1454,7 +2062,14 @@ class StudentResourceIT {
             .address(UPDATED_ADDRESS)
             .remarks(UPDATED_REMARKS)
             .joiningDate(UPDATED_JOINING_DATE)
-            .price(UPDATED_PRICE);
+            .price(UPDATED_PRICE)
+            .currentSora(UPDATED_CURRENT_SORA)
+            .stage(UPDATED_STAGE)
+            .grade(UPDATED_GRADE)
+            .readAndWriteRate(UPDATED_READ_AND_WRITE_RATE)
+            .lastTestRate(UPDATED_LAST_TEST_RATE)
+            .groupClass(UPDATED_GROUP_CLASS)
+            .disConnected(UPDATED_DIS_CONNECTED);
 
         restStudentMockMvc
             .perform(
@@ -1479,6 +2094,13 @@ class StudentResourceIT {
         assertThat(testStudent.getRemarks()).isEqualTo(UPDATED_REMARKS);
         assertThat(testStudent.getJoiningDate()).isEqualTo(UPDATED_JOINING_DATE);
         assertThat(testStudent.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testStudent.getCurrentSora()).isEqualTo(UPDATED_CURRENT_SORA);
+        assertThat(testStudent.getStage()).isEqualTo(UPDATED_STAGE);
+        assertThat(testStudent.getGrade()).isEqualTo(UPDATED_GRADE);
+        assertThat(testStudent.getReadAndWriteRate()).isEqualTo(UPDATED_READ_AND_WRITE_RATE);
+        assertThat(testStudent.getLastTestRate()).isEqualTo(UPDATED_LAST_TEST_RATE);
+        assertThat(testStudent.getGroupClass()).isEqualTo(UPDATED_GROUP_CLASS);
+        assertThat(testStudent.getDisConnected()).isEqualTo(UPDATED_DIS_CONNECTED);
     }
 
     @Test

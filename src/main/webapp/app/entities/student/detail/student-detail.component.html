@@ -24,7 +24,7 @@
         </dd>
         <dt><span jhiTranslate="studentApp.student.gander">Gander</span></dt>
         <dd>
-          <span>{{ student.gander }}</span>
+          <span>{{ student.gander == 0 ? 'ذكر' : 'انثي' }}</span>
         </dd>
         <dt><span jhiTranslate="studentApp.student.studyGroup">Study Group</span></dt>
         <dd>
@@ -57,6 +57,34 @@
         <dt><span jhiTranslate="studentApp.student.price">Price</span></dt>
         <dd>
           <span>{{ student.price }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.currentSora">Current Sora</span></dt>
+        <dd>
+          <span>{{ student.currentSora }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.stage">Stage</span></dt>
+        <dd>
+          <span>{{ student.stage }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.grade">Grade</span></dt>
+        <dd>
+          <span>{{ student.grade }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.readAndWriteRate">Read And Write Rate</span></dt>
+        <dd>
+          <span>{{ student.readAndWriteRate }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.lastTestRate">Last Test Rate</span></dt>
+        <dd>
+          <span>{{ student.lastTestRate }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.groupClass">Group Class</span></dt>
+        <dd>
+          <span>{{ student.groupClass }}</span>
+        </dd>
+        <dt><span jhiTranslate="studentApp.student.disConnected">Dis Connected</span></dt>
+        <dd>
+          <span>{{ student.disConnected }}</span>
         </dd>
       </dl>
 

@@ -28,36 +28,131 @@
     <span jhiTranslate="studentApp.student.home.notFound">No students found</span>
   </div>
 
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>الطالب :</label>
+        <input type="text" class="form-control"  placeholder="">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+
+        <label>النوع :</label>
+
+        <select class="form-control"  name="selectedRegion">
+          <option value=" "> اختر</option>
+          <option value="ذكر">ذكر</option>
+          <option value="انثي">انثي</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>العمر من :</label>
+        <input type="text" class="form-control" placeholder="">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>إلي :</label>
+        <input type="text" class="form-control" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+
+        <label>المجموعة الدراسية: </label>
+
+        <select class="form-control"  name="selectedRegion">
+          <option value=" "> اختر</option>
+          <option value="عائشة">عائشة</option>
+          <option value="حفصة">حفصة</option>
+          <option value="عمر بن الخطاب">عمر بن خطاب</option>
+          <option value="ابو بكر الصديق">ابو بكر الصديق</option>
+          <option value="سفيان الثوري"> سفيان الثوري</option>
+          <option value="معاوية">معاوية</option>
+          <option value="الانصار متفرقة">الانصار متفرقة</option>
+          <option value="ام كلثوم سيدات">ام كلثوم سيدات</option>
+          <option value="الختام">الختام</option>
+          <option value="منقطع">منقطع</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+
+        <label>حالة الطالب :</label>
+
+        <select class="form-control"  name="selectedRegion">
+          <option value=" "> اختر</option>
+          <option value="منقطع">منقطع</option>
+          <option value="غير منقطع">غير منقطع</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+
   <div class="table-responsive" id="entities" *ngIf="students && students.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="name"><span jhiTranslate="studentApp.student.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="age"><span jhiTranslate="studentApp.student.age">Age</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="gander">
-            <span jhiTranslate="studentApp.student.gander">Gander</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+<!--          <th scope="col" jhiSortBy="age"><span jhiTranslate="studentApp.student.age">Age</span> <fa-icon icon="sort"></fa-icon></th>-->
+<!--          <th scope="col" jhiSortBy="gander">-->
+<!--            <span jhiTranslate="studentApp.student.gander">Gander</span> <fa-icon icon="sort"></fa-icon>-->
+<!--          </th>-->
           <th scope="col" jhiSortBy="studyGroup">
             <span jhiTranslate="studentApp.student.studyGroup">Study Group</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="nationalId">
-            <span jhiTranslate="studentApp.student.nationalId">National Id</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="parentNumber">
-            <span jhiTranslate="studentApp.student.parentNumber">Parent Number</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+<!--          <th scope="col" jhiSortBy="nationalId">-->
+<!--            <span jhiTranslate="studentApp.student.nationalId">National Id</span> <fa-icon icon="sort"></fa-icon>-->
+<!--          </th>-->
+<!--          <th scope="col" jhiSortBy="parentNumber">-->
+<!--            <span jhiTranslate="studentApp.student.parentNumber">Parent Number</span> <fa-icon icon="sort"></fa-icon>-->
+<!--          </th>-->
           <th scope="col" jhiSortBy="rate"><span jhiTranslate="studentApp.student.rate">Rate</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="address">
-            <span jhiTranslate="studentApp.student.address">Address</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="remarks">
-            <span jhiTranslate="studentApp.student.remarks">Remarks</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+<!--          <th scope="col" jhiSortBy="address">-->
+<!--            <span jhiTranslate="studentApp.student.address">Address</span> <fa-icon icon="sort"></fa-icon>-->
+<!--          </th>-->
+<!--          <th scope="col" jhiSortBy="remarks">-->
+<!--            <span jhiTranslate="studentApp.student.remarks">Remarks</span> <fa-icon icon="sort"></fa-icon>-->
+<!--          </th>-->
           <th scope="col" jhiSortBy="joiningDate">
             <span jhiTranslate="studentApp.student.joiningDate">Joining Date</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="price"><span jhiTranslate="studentApp.student.price">Price</span> <fa-icon icon="sort"></fa-icon></th>
+<!--          <th scope="col" jhiSortBy="price"><span jhiTranslate="studentApp.student.price">Price</span> <fa-icon icon="sort"></fa-icon></th>-->
+          <th scope="col" jhiSortBy="currentSora">
+            <span jhiTranslate="studentApp.student.currentSora">Current Sora</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="stage"><span jhiTranslate="studentApp.student.stage">Stage</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="grade"><span jhiTranslate="studentApp.student.grade">Grade</span> <fa-icon icon="sort"></fa-icon></th>
+<!--          <th scope="col" jhiSortBy="readAndWriteRate">-->
+<!--            <span jhiTranslate="studentApp.student.readAndWriteRate">Read And Write Rate</span> <fa-icon icon="sort"></fa-icon>-->
+<!--          </th>-->
+          <th scope="col" jhiSortBy="lastTestRate">
+            <span jhiTranslate="studentApp.student.lastTestRate">Last Test Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="groupClass">
+            <span jhiTranslate="studentApp.student.groupClass">Group Class</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+<!--          <th scope="col" jhiSortBy="disConnected">-->
+<!--            <span jhiTranslate="studentApp.student.disConnected">Dis Connected</span> <fa-icon icon="sort"></fa-icon>-->
+<!--          </th>-->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -67,16 +162,23 @@
             <a [routerLink]="['/student', student.id, 'view']">{{ student.id }}</a>
           </td>
           <td>{{ student.name }}</td>
-          <td>{{ student.age }}</td>
-          <td>{{ student.gander }}</td>
+<!--          <td>{{ student.age }}</td>-->
+<!--          <td>{{ student.gander }}</td>-->
           <td>{{ student.studyGroup }}</td>
-          <td>{{ student.nationalId }}</td>
-          <td>{{ student.parentNumber }}</td>
+<!--          <td>{{ student.nationalId }}</td>-->
+<!--          <td>{{ student.parentNumber }}</td>-->
           <td>{{ student.rate }}</td>
-          <td>{{ student.address }}</td>
-          <td>{{ student.remarks }}</td>
+<!--          <td>{{ student.address }}</td>-->
+<!--          <td>{{ student.remarks }}</td>-->
           <td>{{ student.joiningDate | formatMediumDate }}</td>
-          <td>{{ student.price }}</td>
+<!--          <td>{{ student.price }}</td>-->
+          <td>{{ student.currentSora }}</td>
+          <td>{{ student.stage }}</td>
+          <td>{{ student.grade }}</td>
+<!--          <td>{{ student.readAndWriteRate }}</td>-->
+          <td>{{ student.lastTestRate }}</td>
+          <td>{{ student.groupClass }}</td>
+<!--          <td>{{ student.disConnected }}</td>-->
           <td class="text-right">
             <div class="btn-group">
               <button

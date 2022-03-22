@@ -13,6 +13,13 @@ export interface IStudent {
   remarks?: string | null;
   joiningDate?: dayjs.Dayjs | null;
   price?: number | null;
+  currentSora?: string | null;
+  stage?: string | null;
+  grade?: string | null;
+  readAndWriteRate?: string | null;
+  lastTestRate?: string | null;
+  groupClass?: string | null;
+  disConnected?: boolean | null;
 }
 
 export class Student implements IStudent {
@@ -28,8 +35,17 @@ export class Student implements IStudent {
     public address?: string | null,
     public remarks?: string | null,
     public joiningDate?: dayjs.Dayjs | null,
-    public price?: number | null
-  ) {}
+    public price?: number | null,
+    public currentSora?: string | null,
+    public stage?: string | null,
+    public grade?: string | null,
+    public readAndWriteRate?: string | null,
+    public lastTestRate?: string | null,
+    public groupClass?: string | null,
+    public disConnected?: boolean | null
+  ) {
+    this.disConnected = this.disConnected ?? false;
+  }
 }
 
 export function getStudentIdentifier(student: IStudent): number | undefined {

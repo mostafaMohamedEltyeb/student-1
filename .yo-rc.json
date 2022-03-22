@@ -42,7 +42,7 @@
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
     "languages": ["en", "ar-ly"],
-    "lastLiquibaseTimestamp": 1647197848000,
-    "entities": ["Student"]
+    "lastLiquibaseTimestamp": 1647342993000,
+    "entities": ["Student", "Payment"]
   }
 }

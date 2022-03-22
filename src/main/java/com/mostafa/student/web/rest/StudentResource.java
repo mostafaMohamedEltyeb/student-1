@@ -6,11 +6,13 @@ import com.mostafa.student.service.StudentService;
 import com.mostafa.student.service.criteria.StudentCriteria;
 import com.mostafa.student.service.dto.StudentDTO;
 import com.mostafa.student.web.rest.errors.BadRequestAlertException;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,13 +53,6 @@ public class StudentResource {
         this.studentQueryService = studentQueryService;
     }
 
-    /**
-     * {@code POST  /students} : Create a new student.
-     *
-     * @param studentDTO the studentDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new studentDTO, or with status {@code 400 (Bad Request)} if the student has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/students")
     public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO studentDTO) throws URISyntaxException {
         log.debug("REST request to save Student : {}", studentDTO);
@@ -71,16 +66,6 @@ public class StudentResource {
             .body(result);
     }
 
-    /**
-     * {@code PUT  /students/:id} : Updates an existing student.
-     *
-     * @param id the id of the studentDTO to save.
-     * @param studentDTO the studentDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated studentDTO,
-     * or with status {@code 400 (Bad Request)} if the studentDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the studentDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PutMapping("/students/{id}")
     public ResponseEntity<StudentDTO> updateStudent(
         @PathVariable(value = "id", required = false) final Long id,
@@ -105,17 +90,6 @@ public class StudentResource {
             .body(result);
     }
 
-    /**
-     * {@code PATCH  /students/:id} : Partial updates given fields of an existing student, field will ignore if it is null
-     *
-     * @param id the id of the studentDTO to save.
-     * @param studentDTO the studentDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated studentDTO,
-     * or with status {@code 400 (Bad Request)} if the studentDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the studentDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the studentDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PatchMapping(value = "/students/{id}", consumes = "application/merge-patch+json")
     public ResponseEntity<StudentDTO> partialUpdateStudent(
         @PathVariable(value = "id", required = false) final Long id,
@@ -141,13 +115,6 @@ public class StudentResource {
         );
     }
 
-    /**
-     * {@code GET  /students} : get all the students.
-     *
-     * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of students in body.
-     */
     @GetMapping("/students")
     public ResponseEntity<List<StudentDTO>> getAllStudents(StudentCriteria criteria, Pageable pageable) {
         log.debug("REST request to get Students by criteria: {}", criteria);
@@ -156,24 +123,12 @@ public class StudentResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /students/count} : count all the students.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
     @GetMapping("/students/count")
     public ResponseEntity<Long> countStudents(StudentCriteria criteria) {
         log.debug("REST request to count Students by criteria: {}", criteria);
         return ResponseEntity.ok().body(studentQueryService.countByCriteria(criteria));
     }
 
-    /**
-     * {@code GET  /students/:id} : get the "id" student.
-     *
-     * @param id the id of the studentDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the studentDTO, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/students/{id}")
     public ResponseEntity<StudentDTO> getStudent(@PathVariable Long id) {
         log.debug("REST request to get Student : {}", id);
@@ -181,12 +136,6 @@ public class StudentResource {
         return ResponseUtil.wrapOrNotFound(studentDTO);
     }
 
-    /**
-     * {@code DELETE  /students/:id} : delete the "id" student.
-     *
-     * @param id the id of the studentDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @DeleteMapping("/students/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         log.debug("REST request to delete Student : {}", id);
@@ -195,5 +144,11 @@ public class StudentResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/students/lated")
+    public ResponseEntity<?> latePayment(@RequestParam Integer month, @RequestParam Integer year, Pageable pageable) {
+        Optional<List<StudentDTO>> students = studentService.latePayment(month, year, pageable);
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
 }

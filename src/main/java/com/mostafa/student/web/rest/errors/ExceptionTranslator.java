@@ -165,56 +165,56 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
         return create(ex, problem, request);
     }
 
-    @Override
-    public ProblemBuilder prepare(final Throwable throwable, final StatusType status, final URI type) {
-        Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
-
-        if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
-            if (throwable instanceof HttpMessageConversionException) {
-                return Problem
-                    .builder()
-                    .withType(type)
-                    .withTitle(status.getReasonPhrase())
-                    .withStatus(status)
-                    .withDetail("Unable to convert http message")
-                    .withCause(
-                        Optional.ofNullable(throwable.getCause()).filter(cause -> isCausalChainsEnabled()).map(this::toProblem).orElse(null)
-                    );
-            }
-            if (throwable instanceof DataAccessException) {
-                return Problem
-                    .builder()
-                    .withType(type)
-                    .withTitle(status.getReasonPhrase())
-                    .withStatus(status)
-                    .withDetail("Failure during data access")
-                    .withCause(
-                        Optional.ofNullable(throwable.getCause()).filter(cause -> isCausalChainsEnabled()).map(this::toProblem).orElse(null)
-                    );
-            }
-            if (containsPackageName(throwable.getMessage())) {
-                return Problem
-                    .builder()
-                    .withType(type)
-                    .withTitle(status.getReasonPhrase())
-                    .withStatus(status)
-                    .withDetail("Unexpected runtime exception")
-                    .withCause(
-                        Optional.ofNullable(throwable.getCause()).filter(cause -> isCausalChainsEnabled()).map(this::toProblem).orElse(null)
-                    );
-            }
-        }
-
-        return Problem
-            .builder()
-            .withType(type)
-            .withTitle(status.getReasonPhrase())
-            .withStatus(status)
-            .withDetail(throwable.getMessage())
-            .withCause(
-                Optional.ofNullable(throwable.getCause()).filter(cause -> isCausalChainsEnabled()).map(this::toProblem).orElse(null)
-            );
-    }
+//    @Override
+//    public ProblemBuilder prepare(final Throwable throwable, final StatusType status, final URI type) {
+//        Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
+//
+//        if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
+//            if (throwable instanceof HttpMessageConversionException) {
+//                return Problem
+//                    .builder()
+//                    .withType(type)
+//                    .withTitle(status.getReasonPhrase())
+//                    .withStatus(status)
+//                    .withDetail("Unable to convert http message")
+//                    .withCause(
+//                        Optional.ofNullable(throwable.getCause()).filter(cause -> isCausalChainsEnabled()).map(this::toProblem).orElse(null)
+//                    );
+//            }
+//            if (throwable instanceof DataAccessException) {
+//                return Problem
+//                    .builder()
+//                    .withType(type)
+//                    .withTitle(status.getReasonPhrase())
+//                    .withStatus(status)
+//                    .withDetail("Failure during data access")
+//                    .withCause(
+//                        Optional.ofNullable(throwable.getCause()).filter(cause -> isCausalChainsEnabled()).map(this::toProblem).orElse(null)
+//                    );
+//            }
+//            if (containsPackageName(throwable.getMessage())) {
+//                return Problem
+//                    .builder()
+//                    .withType(type)
+//                    .withTitle(status.getReasonPhrase())
+//                    .withStatus(status)
+//                    .withDetail("Unexpected runtime exception")
+//                    .withCause(
+//                        Optional.ofNullable(throwable.getCause()).filter(cause -> isCausalChainsEnabled()).map(this::toProblem).orElse(null)
+//                    );
+//            }
+//        }
+//
+//        return Problem
+//            .builder()
+//            .withType(type)
+//            .withTitle(status.getReasonPhrase())
+//            .withStatus(status)
+//            .withDetail(throwable.getMessage())
+//            .withCause(
+//                Optional.ofNullable(throwable.getCause()).filter(cause -> isCausalChainsEnabled()).map(this::toProblem).orElse(null)
+//            );
+//    }
 
     private boolean containsPackageName(String message) {
         // This list is for sure not complete

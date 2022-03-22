@@ -2,6 +2,7 @@ package com.mostafa.student.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -49,6 +50,27 @@ public class Student implements Serializable {
 
     @Column(name = "price")
     private Integer price;
+
+    @Column(name = "current_sora")
+    private String currentSora;
+
+    @Column(name = "stage")
+    private String stage;
+
+    @Column(name = "grade")
+    private String grade;
+
+    @Column(name = "read_and_write_rate")
+    private String readAndWriteRate;
+
+    @Column(name = "last_test_rate")
+    private String lastTestRate;
+
+    @Column(name = "group_class")
+    private String groupClass;
+
+    @Column(name = "dis_connected")
+    private Boolean disConnected;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -207,6 +229,97 @@ public class Student implements Serializable {
         this.price = price;
     }
 
+    public String getCurrentSora() {
+        return this.currentSora;
+    }
+
+    public Student currentSora(String currentSora) {
+        this.currentSora = currentSora;
+        return this;
+    }
+
+    public void setCurrentSora(String currentSora) {
+        this.currentSora = currentSora;
+    }
+
+    public String getStage() {
+        return this.stage;
+    }
+
+    public Student stage(String stage) {
+        this.stage = stage;
+        return this;
+    }
+
+    public void setStage(String stage) {
+        this.stage = stage;
+    }
+
+    public String getGrade() {
+        return this.grade;
+    }
+
+    public Student grade(String grade) {
+        this.grade = grade;
+        return this;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getReadAndWriteRate() {
+        return this.readAndWriteRate;
+    }
+
+    public Student readAndWriteRate(String readAndWriteRate) {
+        this.readAndWriteRate = readAndWriteRate;
+        return this;
+    }
+
+    public void setReadAndWriteRate(String readAndWriteRate) {
+        this.readAndWriteRate = readAndWriteRate;
+    }
+
+    public String getLastTestRate() {
+        return this.lastTestRate;
+    }
+
+    public Student lastTestRate(String lastTestRate) {
+        this.lastTestRate = lastTestRate;
+        return this;
+    }
+
+    public void setLastTestRate(String lastTestRate) {
+        this.lastTestRate = lastTestRate;
+    }
+
+    public String getGroupClass() {
+        return this.groupClass;
+    }
+
+    public Student groupClass(String groupClass) {
+        this.groupClass = groupClass;
+        return this;
+    }
+
+    public void setGroupClass(String groupClass) {
+        this.groupClass = groupClass;
+    }
+
+    public Boolean getDisConnected() {
+        return this.disConnected;
+    }
+
+    public Student disConnected(Boolean disConnected) {
+        this.disConnected = disConnected;
+        return this;
+    }
+
+    public void setDisConnected(Boolean disConnected) {
+        this.disConnected = disConnected;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -242,6 +355,13 @@ public class Student implements Serializable {
             ", remarks='" + getRemarks() + "'" +
             ", joiningDate='" + getJoiningDate() + "'" +
             ", price=" + getPrice() +
+            ", currentSora='" + getCurrentSora() + "'" +
+            ", stage='" + getStage() + "'" +
+            ", grade='" + getGrade() + "'" +
+            ", readAndWriteRate='" + getReadAndWriteRate() + "'" +
+            ", lastTestRate='" + getLastTestRate() + "'" +
+            ", groupClass='" + getGroupClass() + "'" +
+            ", disConnected='" + getDisConnected() + "'" +
             "}";
     }
 }

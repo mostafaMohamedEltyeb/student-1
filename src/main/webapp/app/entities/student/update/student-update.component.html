@@ -23,21 +23,43 @@
           <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="studentApp.student.gander" for="field_gander">Gander</label>
-          <input type="number" class="form-control" name="gander" id="field_gander" data-cy="gander" formControlName="gander" />
-        </div>
+<!--        <div class="form-group">-->
+<!--          <label class="form-control-label" jhiTranslate="studentApp.student.gander" for="field_gander">Gander</label>-->
+<!--          <input type="number" class="form-control" name="gander" id="field_gander" data-cy="gander" formControlName="gander" />-->
+<!--        </div>-->
+         <div class="form-group">
+
+           <label class="form-control-label" jhiTranslate="studentApp.student.gander" for="field_gander">Gander</label>
+
+           <select class="form-control"  name="gander" id="field_gander" data-cy="gander" formControlName="gander">
+              <option [value]="0">ذكر</option>
+              <option [value]="1">انثي</option>
+            </select>
+          </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="studentApp.student.studyGroup" for="field_studyGroup">Study Group</label>
-          <input
-            type="text"
-            class="form-control"
-            name="studyGroup"
-            id="field_studyGroup"
-            data-cy="studyGroup"
-            formControlName="studyGroup"
-          />
+<!--          <input-->
+<!--            type="text"-->
+<!--            class="form-control"-->
+<!--            name="studyGroup"-->
+<!--            id="field_studyGroup"-->
+<!--            data-cy="studyGroup"-->
+<!--            formControlName="studyGroup"-->
+<!--          />-->
+          <select class="form-control"  name="studyGroup" id="field_studyGroup" data-cy="studyGroup" formControlName="studyGroup">
+            <option value=" "> اختر</option>
+            <option value="عائشة">عائشة</option>
+            <option value="حفصة">حفصة</option>
+            <option value="عمر بن الخطاب">عمر بن خطاب</option>
+            <option value="ابو بكر الصديق">ابو بكر الصديق</option>
+            <option value="سفيان الثوري"> سفيان الثوري</option>
+            <option value="معاوية">معاوية</option>
+            <option value="الانصار متفرقة">الانصار متفرقة</option>
+            <option value="ام كلثوم سيدات">ام كلثوم سيدات</option>
+            <option value="الختام">الختام</option>
+            <option value="منقطع">منقطع</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -103,6 +125,88 @@
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="studentApp.student.price" for="field_price">Price</label>
           <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.currentSora" for="field_currentSora">Current Sora</label>
+          <input
+            type="text"
+            class="form-control"
+            name="currentSora"
+            id="field_currentSora"
+            data-cy="currentSora"
+            formControlName="currentSora"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.stage" for="field_stage">Stage</label>
+          <input type="text" class="form-control" name="stage" id="field_stage" data-cy="stage" formControlName="stage" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.grade" for="field_grade">Grade</label>
+          <input type="text" class="form-control" name="grade" id="field_grade" data-cy="grade" formControlName="grade" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.readAndWriteRate" for="field_readAndWriteRate"
+            >Read And Write Rate</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="readAndWriteRate"
+            id="field_readAndWriteRate"
+            data-cy="readAndWriteRate"
+            formControlName="readAndWriteRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.lastTestRate" for="field_lastTestRate">Last Test Rate</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastTestRate"
+            id="field_lastTestRate"
+            data-cy="lastTestRate"
+            formControlName="lastTestRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.groupClass" for="field_groupClass">Group Class</label>
+<!--          <input-->
+<!--            type="text"-->
+<!--            class="form-control"-->
+<!--            name="groupClass"-->
+<!--            id="field_groupClass"-->
+<!--            data-cy="groupClass"-->
+<!--            formControlName="groupClass"-->
+<!--          />-->
+          <select class="form-control"  name="groupClass" id="field_groupClass" data-cy="groupClass" formControlName="groupClass">
+            <option value=" "> اختر</option>
+            <option value="الحلقة الاولي">الحلقة الاولي</option>
+            <option value="الحلقة الثانية">الحلقة الثانية</option>
+            <option value="الحلقة الثالثة">الحلقة الثالثة</option>
+            <option value="الحلقة الرابعة">الحلقة الرابعة</option>
+            <option value="الحلقة الخامسة">الحلقة الخامسة</option>
+            <option value="متفرقة">متفرقة</option>
+          </select>
+
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="studentApp.student.disConnected" for="field_disConnected">Dis Connected</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="disConnected"
+            id="field_disConnected"
+            data-cy="disConnected"
+            formControlName="disConnected"
+          />
         </div>
       </div>
 

@@ -5,6 +5,7 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
 import { StudentComponent } from '../list/student.component';
 import { StudentDetailComponent } from '../detail/student-detail.component';
 import { StudentUpdateComponent } from '../update/student-update.component';
+import { LatedPaymentComponent } from '../latedlist/lated-payment.component';
 import { StudentRoutingResolveService } from './student-routing-resolve.service';
 
 const studentRoute: Routes = [
@@ -16,6 +17,14 @@ const studentRoute: Routes = [
     },
     canActivate: [UserRouteAccessService],
   },
+    {
+      path: 'lated',
+      component: LatedPaymentComponent,
+      data: {
+        defaultSort: 'id,asc',
+      },
+      canActivate: [UserRouteAccessService],
+    },
   {
     path: ':id/view',
     component: StudentDetailComponent,
