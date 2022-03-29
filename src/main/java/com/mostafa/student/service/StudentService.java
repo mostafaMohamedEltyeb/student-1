@@ -74,4 +74,13 @@ public class StudentService {
     public Optional<List<StudentDTO>> latePayment(Integer month, Integer year, Pageable pageable) {
         return studentRepository.latePayment(month,year,pageable).map(studentMapper::toDto);
     }
+
+    public Optional<List<StudentDTO>> filterStudent(String name, String studyGroup, Integer ageFrom, Integer ageTo, Integer gander, Boolean disconnected, Pageable pageable) {
+        if (name == null || name.equals("zzNull")) {
+            name = "%%";
+        } else {
+            name = "%" + name + "%";
+        }
+        return studentRepository.filterStudent(name, studyGroup, ageFrom, ageTo, gander, disconnected, pageable).map(studentMapper::toDto);
+    }
 }

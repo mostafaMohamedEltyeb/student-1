@@ -18,6 +18,19 @@ export class StudentComponent implements OnInit {
   students?: IStudent[];
   isLoading = false;
   totalItems = 0;
+
+  studentName?: string;
+  studentName1?: string;
+  studentGander?: number;
+  studentGander1?: number;
+  ageTo?: number;
+  ageFrom?: number;
+  ageTo1?: number;
+  ageFrom1?: number;
+  studentGroup?: string;
+  studentGroup1?: string;
+  disconnected?: false;
+
   itemsPerPage = ITEMS_PER_PAGE;
   page?: number;
   predicate!: string;
@@ -35,8 +48,51 @@ export class StudentComponent implements OnInit {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
 
+     if (this.studentName === undefined || this.studentName === '') {
+     this.studentName1 = 'zzNull'
+     }
+     else {
+      this.studentName1 = this.studentName
+      }
+
+     if (this.studentGander === undefined) {
+     this.studentGander1 = 3
+     }
+     else {
+     this.studentGander1 = this.studentGander
+     }
+     if (!this.ageTo) {
+       this.ageTo1 = 0
+       }
+       else {
+       this.ageTo1 = this.ageTo
+        }
+        if (!this.ageFrom) {
+          this.ageFrom1 = 0
+          }
+          else {
+          this.ageFrom1 = this.ageFrom
+           }
+           if (!this.studentGroup)  {
+             this.studentGroup1 = 'zzNull'
+             }
+             else {
+             this.studentGroup1 = this.studentGroup
+              }
+      if (this.disconnected === undefined) {
+          this.disconnected = false
+          }
+
+
+
     this.studentService
-      .query({
+      .filter({
+        studentName : this.studentName1,
+        studentGander : this.studentGander1,
+        ageTo : this.ageTo1,
+        ageFrom : this.ageFrom1,
+        studentGroup : this.studentGroup1,
+        disconnected : this.disconnected,
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),

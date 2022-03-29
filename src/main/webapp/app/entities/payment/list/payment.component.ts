@@ -50,14 +50,14 @@ export class PaymentComponent implements OnInit {
      else {
      this.name = this.searchByName
      }
-     if (this.searchByMonth === undefined) {
+     if (!this.searchByMonth) {
      this.month = 0
      }
       else {
        this.month = this.searchByMonth
        }
 
-     if (this.searchByYear === undefined) {
+     if (!this.searchByYear) {
      this.year = 0
      }
      else {

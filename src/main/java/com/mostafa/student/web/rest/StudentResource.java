@@ -151,4 +151,10 @@ public class StudentResource {
         Optional<List<StudentDTO>> students = studentService.latePayment(month, year, pageable);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
+
+    @GetMapping("/students/filter")
+    public ResponseEntity<?> lateFilterStudent(@RequestParam String studentName, @RequestParam String studentGroup, @RequestParam Integer ageFrom, @RequestParam Integer ageTo, @RequestParam Integer studentGander, @RequestParam Boolean disconnected,Pageable pageable) {
+        Optional<List<StudentDTO>> students = studentService.filterStudent(studentName, studentGroup, ageFrom, ageTo, studentGander, disconnected, pageable);
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
 }

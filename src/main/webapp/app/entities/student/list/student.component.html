@@ -33,7 +33,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <label>الطالب :</label>
-        <input type="text" class="form-control"  placeholder="">
+        <input type="text" [(ngModel)]="studentName" class="form-control"  placeholder="">
       </div>
     </div>
     <div class="col-md-3">
@@ -41,10 +41,10 @@
 
         <label>النوع :</label>
 
-        <select class="form-control"  name="selectedRegion">
-          <option value=" "> اختر</option>
-          <option value="ذكر">ذكر</option>
-          <option value="انثي">انثي</option>
+        <select class="form-control" [(ngModel)]="studentGander" name="selectedRegion">
+          <option value="3"> اختر</option>
+          <option value="0">ذكر</option>
+          <option value="1">انثي</option>
         </select>
       </div>
     </div>
@@ -55,14 +55,14 @@
     <div class="col-md-3">
       <div class="form-group">
         <label>العمر من :</label>
-        <input type="text" class="form-control" placeholder="">
+        <input type="text" [(ngModel)]="ageFrom"  class="form-control" placeholder="">
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="form-group">
         <label>إلي :</label>
-        <input type="text" class="form-control" placeholder="">
+        <input type="text" [(ngModel)]="ageTo" class="form-control" placeholder="">
       </div>
     </div>
   </div>
@@ -73,8 +73,8 @@
 
         <label>المجموعة الدراسية: </label>
 
-        <select class="form-control"  name="selectedRegion">
-          <option value=" "> اختر</option>
+        <select class="form-control" [(ngModel)]="studentGroup"  name="selectedRegion">
+          <option value="zzNull"> اختر</option>
           <option value="عائشة">عائشة</option>
           <option value="حفصة">حفصة</option>
           <option value="عمر بن الخطاب">عمر بن خطاب</option>
@@ -95,10 +95,9 @@
 
         <label>حالة الطالب :</label>
 
-        <select class="form-control"  name="selectedRegion">
-          <option value=" "> اختر</option>
-          <option value="منقطع">منقطع</option>
-          <option value="غير منقطع">غير منقطع</option>
+        <select class="form-control" [(ngModel)]="disconnected"  name="selectedRegion">
+          <option value="true">منقطع</option>
+          <option value="false">غير منقطع</option>
         </select>
       </div>
     </div>
@@ -118,6 +117,10 @@
 <!--          </th>-->
           <th scope="col" jhiSortBy="studyGroup">
             <span jhiTranslate="studentApp.student.studyGroup">Study Group</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+
+          <th scope="col" jhiSortBy="groupClass">
+            <span jhiTranslate="studentApp.student.groupClass">Group Class</span> <fa-icon icon="sort"></fa-icon>
           </th>
 <!--          <th scope="col" jhiSortBy="nationalId">-->
 <!--            <span jhiTranslate="studentApp.student.nationalId">National Id</span> <fa-icon icon="sort"></fa-icon>-->
@@ -147,9 +150,7 @@
           <th scope="col" jhiSortBy="lastTestRate">
             <span jhiTranslate="studentApp.student.lastTestRate">Last Test Rate</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="groupClass">
-            <span jhiTranslate="studentApp.student.groupClass">Group Class</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+
 <!--          <th scope="col" jhiSortBy="disConnected">-->
 <!--            <span jhiTranslate="studentApp.student.disConnected">Dis Connected</span> <fa-icon icon="sort"></fa-icon>-->
 <!--          </th>-->
@@ -165,6 +166,7 @@
 <!--          <td>{{ student.age }}</td>-->
 <!--          <td>{{ student.gander }}</td>-->
           <td>{{ student.studyGroup }}</td>
+          <td>{{ student.groupClass }}</td>
 <!--          <td>{{ student.nationalId }}</td>-->
 <!--          <td>{{ student.parentNumber }}</td>-->
           <td>{{ student.rate }}</td>
@@ -177,7 +179,7 @@
           <td>{{ student.grade }}</td>
 <!--          <td>{{ student.readAndWriteRate }}</td>-->
           <td>{{ student.lastTestRate }}</td>
-          <td>{{ student.groupClass }}</td>
+
 <!--          <td>{{ student.disConnected }}</td>-->
           <td class="text-right">
             <div class="btn-group">
