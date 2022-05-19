@@ -3,12 +3,11 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { IStudent } from '../student.model';
-
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { StudentService } from '../service/student.service';
 import { StudentDeleteDialogComponent } from '../delete/student-delete-dialog.component';
+import { ExcelService } from './../../../excel.service';
 
 @Component({
   selector: 'jhi-student',
@@ -38,10 +37,11 @@ export class StudentComponent implements OnInit {
   ngbPaginationPage = 1;
 
   constructor(
+    protected excelService : ExcelService ,
     protected studentService: StudentService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -113,6 +113,15 @@ export class StudentComponent implements OnInit {
     this.handleNavigation();
   }
 
+  exportStores () {
+    return this.excelService.exportExcel ({
+     data : this.students ,
+     fileName : 'data',
+     sheetName : "data" ,
+     header : []
+   })
+ }
+ 
   trackId(index: number, item: IStudent): number {
     return item.id!;
   }
@@ -170,4 +179,6 @@ export class StudentComponent implements OnInit {
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
   }
+
+
 }

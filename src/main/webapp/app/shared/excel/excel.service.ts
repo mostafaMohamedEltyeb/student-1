@@ -4,17 +4,16 @@ import { WorkBook, WorkSheet } from 'xlsx';
 
 export interface IEExportAsExcelProps {
   readonly data: any;
-  readonly fileName: string;
-  readonly sheetName?: string;
-  readonly header?: string[];
+  readonly fileName: any;
+  readonly sheetName?: any;
+  readonly header?: any;
   readonly table?: HTMLElement;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ExcelService {
-
   fileExtension = '.xlsx';
 
   public exportExcel({ data, fileName, sheetName, header = [], table }: IEExportAsExcelProps): void {
@@ -31,3 +30,12 @@ export class ExcelService {
     writeFile(wb, `${fileName}${this.fileExtension}`);
   }
 }
+
+//  exportStores () {
+//    this.exportExcelService.exportExcel ({
+//     data : this.data ,
+//     fileName : 'data',
+//     sheetName : "data" ,
+//     header : []
+//   })
+// }

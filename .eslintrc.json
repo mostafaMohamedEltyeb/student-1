@@ -20,6 +20,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
     "@angular-eslint/component-selector": [
       "error",
       {
@@ -46,7 +47,6 @@
         }
       }
     ],
-    "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/member-ordering": [
       "error",

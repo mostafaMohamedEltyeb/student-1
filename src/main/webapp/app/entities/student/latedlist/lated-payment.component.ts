@@ -3,9 +3,8 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { ExcelService } from './../../../excel.service';
 import { IStudent } from '../student.model';
-
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { StudentService } from '../service/student.service';
 
@@ -31,7 +30,9 @@ export class LatedPaymentComponent implements OnInit {
     protected studentService: StudentService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal ,
+    protected excelService : ExcelService 
+
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -86,6 +87,15 @@ export class LatedPaymentComponent implements OnInit {
   trackId(index: number, item: IStudent): number {
     return item.id!;
   }
+
+  exportStores () {
+    this.excelService.exportExcel ({
+     data : this.students ,
+     fileName : 'data',
+     sheetName : "data" ,
+     header : []
+   })
+ }
 
 //   delete(payment: IStudent): void {
 //     const modalRef = this.modalService.open(PaymentDeleteDialogComponent, { size: 'lg', backdrop: 'static' });

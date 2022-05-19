@@ -3,7 +3,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { ExcelService } from './../../../excel.service';
 import { IPayment } from '../payment.model';
 
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
@@ -33,7 +33,8 @@ export class PaymentComponent implements OnInit {
     protected paymentService: PaymentService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal ,
+    protected excelService : ExcelService 
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -91,6 +92,15 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.handleNavigation();
   }
+
+  exportStores () {
+    this.excelService.exportExcel ({
+     data : this.payments ,
+     fileName : 'data',
+     sheetName : "data" ,
+     header : []
+   })
+ }
 
   trackId(index: number, item: IPayment): number {
     return item.id!;
